@@ -206,24 +206,31 @@
     }
 
     // Countdown
-    const eventDate=new Date("2025-09-28T11:00:00").getTime();
-    function updateTimer(){
-      const now=new Date().getTime();
-      const distance=eventDate-now;
-      const timer=document.getElementById("timer");
-      if(distance<=0){
-        timer.innerHTML="CLOSED";
-        timer.classList.add("closed");
-        document.getElementById("registerBtn").style.display="none";
-        return;
-      }
-      const days=Math.floor(distance/(1000*60*60*24));
-      const hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
-      const mins=Math.floor((distance%(1000*60*60))/(1000*60));
-      const secs=Math.floor((distance%(1000*60))/1000);
-      timer.innerHTML=`${days<10?"0":""}${days}D : ${hours<10?"0":""}${hours}H : ${mins<10?"0":""}${mins}M : ${secs<10?"0":""}${secs}S`;
-    }
-    setInterval(updateTimer,1000);updateTimer();
+const eventDate = new Date("2025-09-27T00:00:00").getTime(); // 27th night 12:00 AM
+function updateTimer() {
+  const now = new Date().getTime();
+  const distance = eventDate - now;
+  const timer = document.getElementById("timer");
+
+  if (distance <= 0) {
+    timer.innerHTML = "CLOSED";
+    timer.classList.add("closed");
+    document.getElementById("registerBtn").style.display = "none";
+    return;
+  }
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const secs = Math.floor((distance % (1000 * 60)) / 1000);
+
+  timer.innerHTML = 
+    `${days < 10 ? "0" : ""}${days}D : ${hours < 10 ? "0" : ""}${hours}H : ${mins < 10 ? "0" : ""}${mins}M : ${secs < 10 ? "0" : ""}${secs}S`;
+}
+
+setInterval(updateTimer, 1000);
+updateTimer();
+
 
     // Binary Rain
     const canvas=document.getElementById('binaryBG');
@@ -241,6 +248,7 @@
   </script>
 </body>
 </html>
+
 
 
 
